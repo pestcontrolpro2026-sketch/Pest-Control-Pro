@@ -2023,46 +2023,29 @@ function updateDashboard(){
 
 // ── INIT via Firebase (bootApp appelé ci-dessous) ──
 bootApp();
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyD1wWwunoDh_u6kZp2kx2crK83LXsJEyjk",
-    authDomain: "pest-control-pro-f4449.firebaseapp.com",
-    projectId: "pest-control-pro-f4449",
-    storageBucket: "pest-control-pro-f4449.firebasestorage.app",
-    messagingSenderId: "316865702260",
-    appId: "1:316865702260:web:7b36abf668bb7a3f24a421",
-    measurementId: "G-FYEC5DQRFS"
-  };
-
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 <script>
 function dologin() {
-    const u=document.getElementById('li-user').value.trim();
-    const p=document.getElementById('li-pass').value;
-    const found=USERS.find(x=>x.user===u && x.pass===p);
-    if(found){
-        localStorage.setItem('pcp-session', JSON.stringify({user:u, role:found.role, ts:Date.now()}));
-        document.getElementById('login-screen').style.display='none';
-        document.getElementById('logout-btn').style.display='block';
-        document.getElementById('logout-btn').textContent='⎋ '+found.user+' ('+found.role+')';
-        document.getElementById('li-err').textContent='';
-        const isAdmin = found.role==='Admin';
-        document.getElementById('nav-admin').style.display=isAdmin?'flex':'none';
-        document.getElementById('mob-admin').style.display=isAdmin?'flex':'none';
+    const u = document.getElementById('li-user').value.trim();
+    const p = document.getElementById('li-pass').value;
+    const found = USERS.find(x => x.user === u && x.pass === p);
+    if (found) {
+        localStorage.setItem('pcp-session', JSON.stringify({user: u, role: found.role, ts: Date.now()}));
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('logout-btn').style.display = 'block';
+        document.getElementById('logout-btn').textContent = '⎋ ' + found.user + ' (' + found.role + ')';
+        document.getElementById('li-err').textContent = '';
+        const isAdmin = found.role === 'Admin';
+        const navAdmin = document.getElementById('nav-admin');
+        const mobAdmin = document.getElementById('mob-admin');
+        if (navAdmin) navAdmin.style.display = isAdmin ? 'flex' : 'none';
+        if (mobAdmin) mobAdmin.style.display = isAdmin ? 'flex' : 'none';
         updateDashboard();
     } else {
-        document.getElementById('li-err').textContent='❌ Identifiant ou mot de passe incorrect';
-        document.getElementById('li-pass').value='';
+        document.getElementById('li-err').textContent = '❌ Identifiant ou mot de passe incorrect';
+        document.getElementById('li-pass').value = '';
         document.getElementById('li-pass').focus();
     }
 }
