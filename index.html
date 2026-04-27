@@ -307,7 +307,7 @@ html,body{height:100%;font-family:'Nunito',sans-serif;background:#edf2eb;color:v
       <label>Mot de passe</label>
       <input type="password" id="li-pass" placeholder="pestcontrol2024" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
-    <button class="login-btn" onclick="doLogin()">Se connecter</button>
+    <button onclick="dologin()">Se connecter</button>
     <div class="login-err" id="li-err"></div>
     <div class="login-footer">PEST CONTROL PRO S.A.R.L &nbsp;—&nbsp; Système de gestion</div>
   </div>
@@ -1938,7 +1938,7 @@ function openPrintWin(doc, titre, isFacture){
     <!-- ENTÊTE SOCIÉTÉ + TITRE -->
     <div class="entete">
       <div class="ent-left">
-        <img src="data:image/png;base64,${LOGO}" alt="Logo">
+       <img src="data:image/png;base64,iVBORw0KGgoAAAANS...">
         <h2>PEST CONTROL PRO S.A.R.L</h2>
         <p>Capital : 100 000,00 DHS &nbsp;|&nbsp; RC : 638043<br>IF : 66039719 &nbsp;|&nbsp; ICE : 003550416000085</p>
       </div>
@@ -2046,6 +2046,11 @@ bootApp();
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+  <script>
+function dologin() {
+    alert("Connexion en cours...");
+}
+</script>
 </script>
 </body>
 </html>
