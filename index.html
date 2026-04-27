@@ -1162,7 +1162,7 @@ function renderRentHist(){
       <td><strong>${r.projet}</strong><br><small style="color:var(--muted)">${fmtD(r.date)}</small></td>
       <td style="color:var(--gd);font-weight:700">${fmt(r.offre)}</td>
       <td style="color:var(--red)">${fmt(r.totalCharges)}</td>
-      <td style="font-weight:800;color:${r.profit>0?'var(--gd)':'var(--red)';}">${fmt(r.profit)}</td>
+      <td style="font-weight:800;color:${r.profit>0?'var(--gd)':'var(--red)'}">${fmt(r.profit)}</td>
       <td style="font-weight:700">${r.marge.toFixed(1)}%</td>
       <td><span class="badge ${cls}">${lbl}</span></td>
       <td style="display:flex;gap:5px">
