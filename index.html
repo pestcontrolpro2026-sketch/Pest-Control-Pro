@@ -307,7 +307,7 @@ html,body{height:100%;font-family:'Nunito',sans-serif;background:#edf2eb;color:v
       <label>Mot de passe</label>
       <input type="password" id="li-pass" placeholder=".........." autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
-    <button onclick="dologin()">Se connecter</button>
+    <button onclick="doLogin()">Se connecter</button>
     <div class="login-err" id="li-err"></div>
     <div class="login-footer">PEST CONTROL PRO S.A.R.L &nbsp;—&nbsp; Système de gestion</div>
   </div>
@@ -2047,7 +2047,24 @@ bootApp();
   const analytics = getAnalytics(app);
 <script>
 function dologin() {
-    alert("Connexion");
+    const u=document.getElementById('li-user').value.trim();
+    const p=document.getElementById('li-pass').value;
+    const found=USERS.find(x=>x.user===u && x.pass===p);
+    if(found){
+        localStorage.setItem('pcp-session', JSON.stringify({user:u, role:found.role, ts:Date.now()}));
+        document.getElementById('login-screen').style.display='none';
+        document.getElementById('logout-btn').style.display='block';
+        document.getElementById('logout-btn').textContent='⎋ '+found.user+' ('+found.role+')';
+        document.getElementById('li-err').textContent='';
+        const isAdmin = found.role==='Admin';
+        document.getElementById('nav-admin').style.display=isAdmin?'flex':'none';
+        document.getElementById('mob-admin').style.display=isAdmin?'flex':'none';
+        updateDashboard();
+    } else {
+        document.getElementById('li-err').textContent='❌ Identifiant ou mot de passe incorrect';
+        document.getElementById('li-pass').value='';
+        document.getElementById('li-pass').focus();
+    }
 }
 </script>
 </body>
